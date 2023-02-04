@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    private Collider2D collider2D;
-    [SerializeField]
-    private ContactFilter2D filter;
-    private List<Collider2D> collidedObjects = new List<Collider2D>(1);
     public InteratibleTypes type;
     public enum InteratibleTypes
     {
@@ -17,23 +13,10 @@ public class Interactable : MonoBehaviour
         Dialog
     }
 
-    void Start()
+    void OnCollisionStay2D(Collision2D collision)
     {
-        collider2D = GetComponent<Collider2D>();
-    }
-
-    void Update()
-    {
-        GetComponent<Collider2D>().OverlapCollider(filter, collidedObjects);
-        foreach (var o in collidedObjects)
-        {
-            OnCollided(o.gameObject);
-        }
-    }
-
-    private void OnCollided(GameObject collidedObject)
-    {
-        if (Input.GetKeyDown("space"))
+        Debug.Log(collision.gameObject.name);
+        if (Input.GetKey("space"))
         {
             //check on the type of object and call the correct method
             switch (type)
@@ -55,8 +38,8 @@ public class Interactable : MonoBehaviour
 
     private void Plant()
     {
+        this.gameObject.transform.Find("Before").gameObject.SetActive(false);
+        this.gameObject.transform.Find("After").gameObject.SetActive(true);
         //call on the method for updating the objective
-        Debug.Log("Teste");
-        Destroy(gameObject);
     }
 }
