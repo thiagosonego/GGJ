@@ -8,18 +8,55 @@ public class Interactable : MonoBehaviour
     [SerializeField]
     private ContactFilter2D filter;
     private List<Collider2D> collidedObjects = new List<Collider2D>(1);
+    public InteratibleTypes type;
+    public enum InteratibleTypes
+    {
+        Plant,
+        Scissor,
+        Medicine,
+        Dialog
+    }
 
     void Start()
     {
-        collider2D = gameObject.GetComponent<Collider2D>();
+        collider2D = GetComponent<Collider2D>();
     }
 
     void Update()
     {
-        collider2D.OverlapCollider(filter, collidedObjects);
+        GetComponent<Collider2D>().OverlapCollider(filter, collidedObjects);
         foreach (var o in collidedObjects)
         {
-            Debug.Log("Collided with " + o.name);
+            OnCollided(o.gameObject);
         }
+    }
+
+    private void OnCollided(GameObject collidedObject)
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            //check on the type of object and call the correct method
+            switch (type)
+            {
+                case InteratibleTypes.Plant:
+                    Plant();
+                    break;
+                case InteratibleTypes.Scissor:
+                    break;
+                case InteratibleTypes.Medicine:
+                    break;
+                case InteratibleTypes.Dialog:
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void Plant()
+    {
+        //call on the method for updating the objective
+        Debug.Log("Teste");
+        Destroy(gameObject);
     }
 }
