@@ -6,51 +6,77 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     AudioSource audioSource;
+
     public InteratibleTypes type;
-        
+
+    bool used = false;
+
+    public bool isFirstFase;
+
     public enum InteratibleTypes
     {
-
         Plant,
-        Scissor,
         Medicine,
         Dialog
     }
-     void Start()
+
+    void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
-
     }
     void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
-        if (Input.GetKey("space"))
+        if (!used)
         {
-            //check on the type of object and call the correct method
-            switch (type)
+            collision.gameObject.GetComponent<PlayerControler>().ShowInteraction(true);
+            if (Input.GetKey("space"))
             {
-                case InteratibleTypes.Plant:
-                    Plant();
-                    break;
-                case InteratibleTypes.Scissor:
-                    break;
-                case InteratibleTypes.Medicine:
-                    break;
-                case InteratibleTypes.Dialog:
-                    break;
-                default:
-                    break;
+                //check on the type of object and call the correct method
+                switch (type)
+                {
+                    case InteratibleTypes.Plant:
+                        if(FindObjectOfType<Canvas>().GetComponent<ObjectiveTracker>().objective == ObjectiveTracker.stages.Count)
+                            Plant();
+                        break;
+                    case InteratibleTypes.Medicine:
+                        if (FindObjectOfType<Canvas>().GetComponent<ObjectiveTracker>().objective == ObjectiveTracker.stages.Count)
+                            Medicine();
+                        break;
+                    case InteratibleTypes.Dialog:
+                            Dialog();
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        collision.gameObject.GetComponent<PlayerControler>().ShowInteraction(false);
+    }
+
     private void Plant()
     {
+        FindObjectOfType<Canvas>().GetComponent<ObjectiveTracker>().UpdateObjective("Plant");
         this.gameObject.transform.Find("Before").gameObject.SetActive(false);
-
         this.gameObject.transform.Find("After").gameObject.SetActive(true);
         audioSource.Play();
+        used = true;
+    }
 
-        //call on the method for updating the objective
+    private void Medicine()
+    {
+        FindObjectOfType<Canvas>().GetComponent<ObjectiveTracker>().UpdateObjective("Medicine");
+        audioSource.Play();
+        this.gameObject.SetActive(false);
+        used = true;
+    }
+
+    private void Dialog()
+    {
+        FindObjectOfType<Canvas>().GetComponent<ObjectiveTracker>().UpdateObjective("Dialog", isFirstFase);
+        used = true;
     }
 }
