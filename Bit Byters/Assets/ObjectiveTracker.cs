@@ -14,8 +14,11 @@ public class ObjectiveTracker : MonoBehaviour
     public AudioSource music;
     public AudioClip newMusic;
 
+    GameObject losePanel;
+
     public int totalObjective;
     int currentObjective = 0;
+    bool lost = false;
 
     public stages objective;
 
@@ -31,6 +34,17 @@ public class ObjectiveTracker : MonoBehaviour
         objectiveText = this.gameObject.transform.Find("Objective").gameObject;
         objectiveTracking = this.gameObject.transform.Find("Counter").gameObject;
         objective = stages.Start;
+        losePanel = this.gameObject.transform.Find("LosePanel").gameObject;
+    }
+
+    void Update()
+    {
+        if(lost && Input.GetKeyDown("space"))
+        {
+            losePanel.SetActive(false);
+            Time.timeScale = 1;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public void UpdateObjective(string type ,bool isFirstFase = true)
@@ -70,5 +84,13 @@ public class ObjectiveTracker : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void LoseCall()
+    {
+        losePanel.SetActive(true);
+        if (!lost)
+            lost = true;
+        Time.timeScale = 0;
     }
 }
