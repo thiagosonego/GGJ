@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Interactable : MonoBehaviour
 {
+    AudioSource audioSource;
     public InteratibleTypes type;
+        
     public enum InteratibleTypes
     {
+
         Plant,
         Scissor,
         Medicine,
         Dialog
     }
+     void Start()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
 
+    }
     void OnCollisionStay2D(Collision2D collision)
     {
         Debug.Log(collision.gameObject.name);
@@ -39,7 +47,10 @@ public class Interactable : MonoBehaviour
     private void Plant()
     {
         this.gameObject.transform.Find("Before").gameObject.SetActive(false);
+
         this.gameObject.transform.Find("After").gameObject.SetActive(true);
+        audioSource.Play();
+
         //call on the method for updating the objective
     }
 }

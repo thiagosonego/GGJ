@@ -37,9 +37,6 @@ public class PlayerControler : MonoBehaviour
         inputVertical = Input.GetAxisRaw("Vertical");
 
 
-
-
-
     }
 
     void FixedUpdate()
