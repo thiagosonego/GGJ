@@ -8,12 +8,10 @@ public class PopUpSystem : MonoBehaviour
 
     public GameObject popUpBox;
     public Animator animator;
-    public TextMeshPro popUpText;
 
-    public void PopUp(string text)
+    public void PopUp()
     {
         popUpBox.SetActive(true);
-        popUpText.text = text;
-        animator.SetTrigger("pop");
+        animator.SetTrigger("Pop");
     }
 }

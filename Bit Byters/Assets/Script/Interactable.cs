@@ -6,12 +6,10 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     AudioSource audioSource;
-
     public InteratibleTypes type;
+    public bool isFirstFase;
 
     bool used = false;
-
-    public bool isFirstFase;
 
     public enum InteratibleTypes
     {
@@ -70,13 +68,15 @@ public class Interactable : MonoBehaviour
     {
         FindObjectOfType<Canvas>().GetComponent<ObjectiveTracker>().UpdateObjective("Medicine");
         audioSource.Play();
-        this.gameObject.SetActive(false);
         used = true;
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 
     private void Dialog()
     {
         FindObjectOfType<Canvas>().GetComponent<ObjectiveTracker>().UpdateObjective("Dialog", isFirstFase);
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<PopUpSystem>().PopUp();
         used = true;
     }
 }
