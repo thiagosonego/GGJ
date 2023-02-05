@@ -12,7 +12,7 @@ public class PlayerControler : MonoBehaviour
     float speedLimiter = 0.7f;
     float inputHorizontal;
     float inputVertical;
-
+     AudioSource audioSource; 
     //Animations
     Animator animator;
     string currentState;
@@ -25,6 +25,9 @@ public class PlayerControler : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        audioSource = gameObject.GetComponent<AudioSource>();
+
         animator = gameObject.GetComponent<Animator>();
     }
 
@@ -32,20 +35,31 @@ public class PlayerControler : MonoBehaviour
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         inputVertical = Input.GetAxisRaw("Vertical");
+
+
     }
 
     void FixedUpdate()
     {
-        if(inputHorizontal != 0 || inputVertical != 0)
+        if (inputHorizontal != 0 || inputVertical != 0)
         {
-            if(inputHorizontal != 0 && inputVertical != 0)
+            if (!audioSource.isPlaying)
             {
+                audioSource.Play();
+
+            }
+            if (inputHorizontal != 0 && inputVertical != 0)
+            {
+
                 inputHorizontal *= speedLimiter;
                 inputVertical *= speedLimiter;
+
+
             }
             rb.velocity = new Vector2(inputHorizontal * walkSpeed, inputVertical * walkSpeed);
 
-            if(inputHorizontal > 0)
+
+            if (inputHorizontal > 0)
             {
                 ChangeAnimationState(PLAYER_WALK_RIGHT);
             }
@@ -62,9 +76,10 @@ public class PlayerControler : MonoBehaviour
                 ChangeAnimationState(PLAYER_WALK_DOWN);
             }
         }
-        else
+        else 
         {
-            rb.velocity = new Vector2(0f, 0f);
+            audioSource.Stop();
+            rb.velocity = new Vector2(0f,  0f);
             ChangeAnimationState(PLAYER_IDLE);
         }
     }
