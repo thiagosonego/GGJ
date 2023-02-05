@@ -13,6 +13,8 @@ public class PlayerControler : MonoBehaviour
     float inputHorizontal;
     float inputVertical;
 
+    public GameObject interactionText;
+
     AudioSource audioSource; 
 
     //Animations
@@ -89,5 +91,11 @@ public class PlayerControler : MonoBehaviour
 
         //Update current state
         currentState = newState;
+    }
+
+    public void ShowInteraction(bool show)
+    {
+        if(interactionText.activeSelf != show)
+            interactionText.SetActive(show);
     }
 }

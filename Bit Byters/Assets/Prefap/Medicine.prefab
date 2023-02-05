@@ -125,7 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24ce037ce98de848931367c39543976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 1
+  isFirstFase: 0
 --- !u!82 &8219254246293955268
 AudioSource:
   m_ObjectHideFlags: 0
