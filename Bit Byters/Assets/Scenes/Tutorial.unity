@@ -1615,6 +1615,7 @@ MonoBehaviour:
   music: {fileID: 2262214863867430438}
   newMusic: {fileID: 8300000, guid: 37b615ef3753f8a4a9b7c469284c42d4, type: 3}
   totalObjective: 7
+  objective: 0
 --- !u!1 &789278880
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,10 +2373,10 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.0107216835, y: 0.010721892}
   m_SpriteTilingProperty:
-    border: {x: 1.4466667, y: 0.72, z: 1.4633334, w: 0.71000004}
+    border: {x: 1.4066668, y: 0.67, z: 1.4300001, w: 0.7166667}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.3333333, y: 3.3333333}
-    newSize: {x: 10, y: 10}
+    newSize: {x: 3.3333333, y: 3.3333333}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -2438,12 +2439,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: f83679b689ef9884192ac561ae0924ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd2c0eaccad3f65489eb739f3a4c3474, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 3.3333333, y: 3.3333333}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -8462,12 +8463,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: 517d36ca16d8c9642b6159c4781c88b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6f22e838ac9a455408f947102cac39f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 3.3333333, y: 3.3333333}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -8503,10 +8504,10 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.0107216835, y: 0.010721892}
   m_SpriteTilingProperty:
-    border: {x: 1.4533334, y: 0.7166667, z: 1.4566667, w: 0.7166667}
+    border: {x: 1.39, y: 0.68333334, z: 1.4066668, w: 0.7}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.3333333, y: 3.3333333}
-    newSize: {x: 10, y: 10}
+    newSize: {x: 3.3333333, y: 3.3333333}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
