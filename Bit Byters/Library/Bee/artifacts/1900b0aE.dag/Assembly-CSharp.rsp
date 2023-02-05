@@ -375,8 +375,12 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/MenuManager.cs"
+"Assets/ObjectiveTracker.cs"
+"Assets/Script/Enemy.cs"
 "Assets/Script/Interactable.cs"
+"Assets/Script/Patrol.cs"
 "Assets/Script/PlayerControler.cs"
+"Assets/Script/PopUpSystem.cs"
 "Assets/Script/StartGameButton.cs"
 -langversion:9.0
 
